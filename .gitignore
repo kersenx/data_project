@@ -1,0 +1,7 @@
+# Python cache files.
+__pycache__/
+*.py[cod]
+
+# Generated market summary reports are uploaded as workflow artifacts.
+reports/*.md
+!reports/.gitkeep

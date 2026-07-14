@@ -1,0 +1,1 @@
+# No third-party dependencies are required for the scheduled market summary task.
