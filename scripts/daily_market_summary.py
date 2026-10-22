@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -211,6 +212,12 @@ def main() -> int:
     output_path = args.output_dir / f"daily-market-summary-{generated_at:%Y-%m-%d}.md"
     output_path.write_text(report, encoding="utf-8")
     print(f"Wrote {output_path}")
+    print(f"Fetched {len(moves)}/{len(tickers)} indices")
+    if not moves:
+        print("ERROR: No market data retrieved; report is diagnostic only.", file=sys.stderr)
+        return 1
+    if missing:
+        print(f"WARNING: Missing indices: {', '.join(missing)}", file=sys.stderr)
     return 0
 
 
